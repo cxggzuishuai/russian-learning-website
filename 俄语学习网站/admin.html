@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理后台 - Русский Мир · 俄语世界</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700;800&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+  <style>
+    body { margin: 0; padding: 0; background: #f0f2f5; }
+    .admin-page-header {
+      background: linear-gradient(135deg, #1A1A2E 0%, #003C8F 100%);
+      color: #fff; padding: 20px 30px; text-align: center;
+    }
+    .admin-page-header h1 { margin: 0; font-size: 1.5rem; }
+    .admin-page-header p { margin: 8px 0 0; opacity: 0.8; font-size: 0.9rem; }
+    .admin-page-container { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
+    .admin-back-btn {
+      display: inline-block; margin: 20px 0;
+      padding: 10px 20px; background: #1565C0; color: #fff;
+      border-radius: 8px; text-decoration: none;
+    }
+    .admin-back-btn:hover { background: #0D47A1; }
+  </style>
+</head>
+<body>
+  <div class="admin-page-header">
+    <h1>🔧 管理后台</h1>
+    <p>Русский Мир · 俄语世界 - 内容管理系统</p>
+  </div>
+
+  <div class="admin-page-container">
+    <a href="index.html" class="admin-back-btn">← 返回前台</a>
+    
+    <div class="admin-panel" style="position:static;width:100%;max-width:100%;max-height:none;">
+      <div class="admin-tabs">
+        <button class="admin-tab active" data-tab="resources" onclick="app.admin.switchTab('resources')">📦 资源管理</button>
+        <button class="admin-tab" data-tab="layout" onclick="app.admin.switchTab('layout')">🎨 首页布局</button>
+        <button class="admin-tab" data-tab="settings" onclick="app.admin.switchTab('settings')">⚙️ 网站设置</button>
+      </div>
+      <div class="admin-body" id="admin-body">
+        <p style="text-align:center;color:#999;padding:40px;">加载中...</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-overlay"></div>
+  <div class="toast-container"></div>
+
+  <script src="js/app.js"></script>
+  <script>
+    // 自动打开管理面板
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        if (app && app.admin) {
+          app.admin.render();
+        }
+      }, 100);
+    });
+  </script>
+</body>
+</html>

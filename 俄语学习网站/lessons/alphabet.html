@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>俄语33个字母发音详解 - Русский Мир</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+      margin: 0;
+    }
+    .lesson-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .back-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #1565C0;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      transition: background 0.3s;
+    }
+    .back-btn:hover { background: #0D47A1; }
+    .lesson-header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #1565C0;
+    }
+    .lesson-title { font-size: 2rem; color: #1A1A2E; margin-bottom: 8px; }
+    .lesson-title-ru { font-size: 1.3rem; color: #C62828; font-family: 'Noto Serif'; }
+    .alphabet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .letter-card {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .letter-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .letter-main { font-size: 2.8rem; font-weight: bold; color: #1565C0; margin-bottom: 6px; }
+    .letter-name { font-size: 0.85rem; color: #666; margin-bottom: 2px; }
+    .letter-sound { font-size: 1rem; color: #C62828; font-weight: 600; margin-bottom: 8px; }
+    .play-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 6px 14px;
+      background: #1565C0;
+      color: #fff;
+      border: none;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .play-btn:hover { background: #C62828; transform: scale(1.05); }
+    .section-title {
+      font-size: 1.5rem;
+      color: #1565C0;
+      margin: 30px 0 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #E3F2FD;
+    }
+    .tip-box {
+      background: #E3F2FD;
+      border-left: 4px solid #1565C0;
+      padding: 15px 20px;
+      margin: 20px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .tip-box h4 { margin: 0 0 10px; color: #1565C0; }
+    .tip-box ul { margin: 0; padding-left: 20px; }
+    .tip-box li { margin: 5px 0; }
+  </style>
+</head>
+<body>
+  <div class="lesson-container">
+    <div class="lesson-header">
+      <h1 class="lesson-title">俄语33个字母发音详解</h1>
+      <div class="lesson-title-ru">Русский алфавит - 33 буквы</div>
+    </div>
+      <h1 class="lesson-title">俄语33个字母发音详解</h1>
+      <div class="lesson-title-ru">Русский алфавит - 33 буквы</div>
+    </div>
+
+    <div class="tip-box">
+      <h4>💡 学习提示</h4>
+      <ul>
+        <li>俄语字母表共有33个字母，包括10个元音和21个辅音</li>
+        <li>点击字母卡片可以听到发音</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">元音字母 (Гласные)</h2>
+    <div class="alphabet-grid" id="vowels-grid"></div>
+
+    <h2 class="section-title">辅音字母 (Согласные)</h2>
+    <div class="alphabet-grid" id="consonants-grid"></div>
+
+    <h2 class="section-title">特殊符号 (Знаки)</h2>
+    <div class="alphabet-grid" id="signs-grid"></div>
+  </div>
+
+  <script>
+    const vowels = [
+      { letter: 'А', name: 'а', sound: 'a [阿]', example: 'мама (妈妈)' },
+      { letter: 'Е', name: 'е', sound: 'ye [耶]', example: 'есть (吃)' },
+      { letter: 'Ё', name: 'ё', sound: 'yo [哟]', example: 'ёлка (圣诞树)' },
+      { letter: 'И', name: 'и', sound: 'i [伊]', example: 'мир (世界)' },
+      { letter: 'О', name: 'о', sound: 'o [奥]', example: 'дом (房子)' },
+      { letter: 'У', name: 'у', sound: 'u [乌]', example: 'дом (房子)' },
+      { letter: 'Ы', name: 'ы', sound: 'y [厄]', example: 'мы (我们)' },
+      { letter: 'Э', name: 'э', sound: 'e [埃]', example: 'это (这个)' },
+      { letter: 'Ю', name: 'ю', sound: 'yu [尤]', example: 'юг (南方)' },
+      { letter: 'Я', name: 'я', sound: 'ya [亚]', example: 'я (我)' }
+    ];
+
+    const consonants = [
+      { letter: 'Б', name: 'бэ', sound: 'b [贝]', example: 'брат (兄弟)' },
+      { letter: 'В', name: 'вэ', sound: 'v [维]', example: 'вода (水)' },
+      { letter: 'Г', name: 'гэ', sound: 'g [格]', example: 'год (年)' },
+      { letter: 'Д', name: 'дэ', sound: 'd [德]', example: 'дом (房子)' },
+      { letter: 'Ж', name: 'жэ', sound: 'zh [日]', example: 'жизнь (生活)' },
+      { letter: 'З', name: 'зэ', sound: 'z [兹]', example: 'зима (冬天)' },
+      { letter: 'Й', name: 'и краткое', sound: 'y [短伊]', example: 'мой (我的)' },
+      { letter: 'К', name: 'ка', sound: 'k [卡]', example: 'кот (猫)' },
+      { letter: 'Л', name: 'эль', sound: 'l [埃尔]', example: 'лес (森林)' },
+      { letter: 'М', name: 'эм', sound: 'm [埃姆]', example: 'мама (妈妈)' },
+      { letter: 'Н', name: 'эн', sound: 'n [恩]', example: 'ночь (夜晚)' },
+      { letter: 'П', name: 'пэ', sound: 'p [佩]', example: 'папа (爸爸)' },
+      { letter: 'Р', name: 'эр', sound: 'r [埃尔]', example: 'работа (工作)' },
+      { letter: 'С', name: 'эс', sound: 's [埃斯]', example: 'сын (儿子)' },
+      { letter: 'Т', name: 'тэ', sound: 't [特]', example: 'там (那里)' },
+      { letter: 'Ф', name: 'эф', sound: 'f [埃夫]', example: 'фото (照片)' },
+      { letter: 'Х', name: 'ха', sound: 'kh [哈]', example: 'хорошо (好)' },
+      { letter: 'Ц', name: 'цэ', sound: 'ts [茨]', example: 'цветок (花)' },
+      { letter: 'Ч', name: 'че', sound: 'ch [切]', example: 'чай (茶)' },
+      { letter: 'Ш', name: 'ша', sound: 'sh [沙]', example: 'школа (学校)' },
+      { letter: 'Щ', name: 'ща', sound: 'shch [夏]', example: 'щука (狗鱼)' }
+    ];
+
+    const signs = [
+      { letter: 'Ъ', name: 'твёрдый знак', sound: '硬音符号', example: 'объект (对象)' },
+      { letter: 'Ь', name: 'мягкий знак', sound: '软音符号', example: 'мать (母亲)' }
+    ];
+
+    function renderLetters(letters, containerId) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = letters.map(l => `
+        <div class="letter-card" onclick="playSound('${l.letter}')">
+          <div class="letter-main">${l.letter}</div>
+          <div class="letter-name">${l.name}</div>
+          <div class="letter-sound">${l.sound}</div>
+          <div style="font-size: 0.8rem; color: #666; margin-top: 5px;">${l.example}</div>
+        </div>
+      `).join('');
+    }
+
+    function playSound(letter) {
+      const utterance = new SpeechSynthesisUtterance(letter);
+      utterance.lang = 'ru-RU';
+      utterance.rate = 0.8;
+      speechSynthesis.speak(utterance);
+    }
+
+    renderLetters(vowels, 'vowels-grid');
+    renderLetters(consonants, 'consonants-grid');
+    renderLetters(signs, 'signs-grid');
+  </script>
+</body>
+</html>

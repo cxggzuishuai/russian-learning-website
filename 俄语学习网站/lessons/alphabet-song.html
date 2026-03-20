@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>俄语字母歌 - Русский алфавит песня | 俄语世界</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: white;
+      padding: 30px;
+      text-align: center;
+    }
+    
+    .header h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+    
+    .header .subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    
+    .player-section {
+      padding: 30px;
+      background: #f8f9fa;
+      text-align: center;
+    }
+    
+    .play-btn {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    }
+    
+    .play-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    }
+    
+    .play-btn.playing {
+      animation: pulse 1s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    
+    .progress-bar {
+      width: 100%;
+      max-width: 500px;
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      margin: 20px auto;
+      overflow: hidden;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea, #764ba2);
+      width: 0%;
+      transition: width 0.1s;
+    }
+    
+    .lyrics-section {
+      padding: 30px;
+    }
+    
+    .lyrics-title {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    
+    .lyrics-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    
+    @media (max-width: 600px) {
+      .lyrics-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .lyrics-box {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 12px;
+    }
+    
+    .lyrics-box h3 {
+      color: #2a5298;
+      margin-bottom: 15px;
+      font-size: 1.1rem;
+    }
+    
+    .lyrics-line {
+      padding: 8px 0;
+      border-bottom: 1px dashed #ddd;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+    
+    .lyrics-line:last-child {
+      border-bottom: none;
+    }
+    
+    .lyrics-line .ru {
+      color: #333;
+      font-weight: 600;
+    }
+    
+    .lyrics-line .zh {
+      color: #666;
+      font-size: 0.95rem;
+    }
+    
+    .lyrics-line.active {
+      background: #e3f2fd;
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin: 0 -12px;
+    }
+    
+    .alphabet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+      gap: 10px;
+      padding: 20px;
+      background: #f0f4f8;
+    }
+    
+    .letter-card {
+      background: white;
+      border-radius: 10px;
+      padding: 15px 10px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    
+    .letter-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    .letter-card .letter {
+      font-size: 1.8rem;
+      color: #2a5298;
+      font-weight: 700;
+    }
+    
+    .letter-card .pronunciation {
+      font-size: 0.8rem;
+      color: #666;
+      margin-top: 5px;
+    }
+    
+    .back-btn {
+      display: inline-block;
+      margin: 20px;
+      padding: 10px 20px;
+      background: #2a5298;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+    
+    .back-btn:hover {
+      background: #1e3c72;
+    }
+    
+    .speed-control {
+      margin-top: 15px;
+    }
+    
+    .speed-control label {
+      margin-right: 10px;
+      color: #666;
+    }
+    
+    .speed-control select {
+      padding: 5px 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🎵 俄语字母歌</h1>
+      <div class="subtitle">Русский алфавит песня | Russian Alphabet Song</div>
+    </div>
+    
+    <div class="player-section">
+      <button class="play-btn" id="playBtn" onclick="togglePlay()">▶️</button>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="speed-control">
+        <label>播放速度：</label>
+        <select id="speedSelect" onchange="changeSpeed()">
+          <option value="0.7">慢速 0.7x</option>
+          <option value="1" selected>正常 1x</option>
+          <option value="1.2">快速 1.2x</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="lyrics-section">
+      <h2 class="lyrics-title">🎤 歌词 Lyrics</h2>
+      <div class="lyrics-container">
+        <div class="lyrics-box">
+          <h3>🇷🇺 俄语歌词</h3>
+          <div id="lyricsRu">
+            <div class="lyrics-line" data-time="0">
+              <div class="ru">А Б В Г Д Е Ё Ж З</div>
+              <div class="zh">阿 贝 维 格 德 耶 哟 日 兹</div>
+            </div>
+            <div class="lyrics-line" data-time="4000">
+              <div class="ru">И Й К Л М Н О П</div>
+              <div class="zh">伊 短伊 卡 埃尔 埃姆 恩 奥 佩</div>
+            </div>
+            <div class="lyrics-line" data-time="8000">
+              <div class="ru">Р С Т У Ф Х Ц Ч Ш</div>
+              <div class="zh">埃尔 埃斯 特 乌 埃夫 哈 茨 切 沙</div>
+            </div>
+            <div class="lyrics-line" data-time="12000">
+              <div class="ru">Щ Ъ Ы Ь Э Ю Я</div>
+              <div class="zh">夏 硬音符号 厄 软音符号 埃 尤 亚</div>
+            </div>
+            <div class="lyrics-line" data-time="16000">
+              <div class="ru">Это русский алфавит!</div>
+              <div class="zh">这就是俄语字母表！</div>
+            </div>
+            <div class="lyrics-line" data-time="18000">
+              <div class="ru">Тридцать три буквы - запомни!</div>
+              <div class="zh">33个字母 - 记住它们！</div>
+            </div>
+          </div>
+        </div>
+        <div class="lyrics-box">
+          <h3>🎵 旋律说明</h3>
+          <div style="color: #666; line-height: 1.8;">
+            <p style="margin-bottom: 15px;">这首字母歌采用简单的童谣旋律，节奏轻快，适合儿童跟唱学习。</p>
+            <p style="margin-bottom: 15px;"><strong>演唱技巧：</strong></p>
+            <ul style="margin-left: 20px;">
+              <li>每行4秒，共6行，总时长约22秒</li>
+              <li>可以循环播放加深记忆</li>
+              <li>建议配合字母卡片一起学习</li>
+              <li>可以调整播放速度适应不同水平</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>记忆口诀：</strong></p>
+            <p>"阿贝维格德耶哟日兹，伊短伊卡埃尔埃姆恩奥佩..."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="alphabet-grid" id="alphabetGrid">
+      <!-- 字母卡片将由JS生成 -->
+    </div>
+    
+    <div style="text-align: center; padding: 20px;">
+      <a href="../index.html" class="back-btn">← 返回首页</a>
+      <a href="alphabet.html" class="back-btn" style="margin-left: 10px;">📖 字母教程</a>
+    </div>
+  </div>
+
+  <script>
+    // 俄语字母数据
+    const alphabet = [
+      { letter: 'А', pronunciation: 'а [a]', sound: '阿' },
+      { letter: 'Б', pronunciation: 'бэ [be]', sound: '贝' },
+      { letter: 'В', pronunciation: 'вэ [ve]', sound: '维' },
+      { letter: 'Г', pronunciation: 'гэ [ge]', sound: '格' },
+      { letter: 'Д', pronunciation: 'дэ [de]', sound: '德' },
+      { letter: 'Е', pronunciation: 'е [ye]', sound: '耶' },
+      { letter: 'Ё', pronunciation: 'ё [yo]', sound: '哟' },
+      { letter: 'Ж', pronunciation: 'жэ [zhe]', sound: '日' },
+      { letter: 'З', pronunciation: 'зэ [ze]', sound: '兹' },
+      { letter: 'И', pronunciation: 'и [i]', sound: '伊' },
+      { letter: 'Й', pronunciation: 'и краткое [i kratkoye]', sound: '短伊' },
+      { letter: 'К', pronunciation: 'ка [ka]', sound: '卡' },
+      { letter: 'Л', pronunciation: 'эль [el]', sound: '埃尔' },
+      { letter: 'М', pronunciation: 'эм [em]', sound: '埃姆' },
+      { letter: 'Н', pronunciation: 'эн [en]', sound: '恩' },
+      { letter: 'О', pronunciation: 'о [o]', sound: '奥' },
+      { letter: 'П', pronunciation: 'пэ [pe]', sound: '佩' },
+      { letter: 'Р', pronunciation: 'эр [er]', sound: '埃尔' },
+      { letter: 'С', pronunciation: 'эс [es]', sound: '埃斯' },
+      { letter: 'Т', pronunciation: 'тэ [te]', sound: '特' },
+      { letter: 'У', pronunciation: 'у [u]', sound: '乌' },
+      { letter: 'Ф', pronunciation: 'эф [ef]', sound: '埃夫' },
+      { letter: 'Х', pronunciation: 'ха [kha]', sound: '哈' },
+      { letter: 'Ц', pronunciation: 'цэ [tse]', sound: '茨' },
+      { letter: 'Ч', pronunciation: 'че [che]', sound: '切' },
+      { letter: 'Ш', pronunciation: 'ша [sha]', sound: '沙' },
+      { letter: 'Щ', pronunciation: 'ща [shcha]', sound: '夏' },
+      { letter: 'Ъ', pronunciation: 'твёрдый знак [tvyordy znak]', sound: '硬音' },
+      { letter: 'Ы', pronunciation: 'ы [y]', sound: '厄' },
+      { letter: 'Ь', pronunciation: 'мягкий знак [myagkiy znak]', sound: '软音' },
+      { letter: 'Э', pronunciation: 'э [e]', sound: '埃' },
+      { letter: 'Ю', pronunciation: 'ю [yu]', sound: '尤' },
+      { letter: 'Я', pronunciation: 'я [ya]', sound: '亚' }
+    ];
+
+    // 歌词数据 - 分段朗读
+    const lyricsSegments = [
+      { text: 'А, Б, В, Г, Д, Е, Ё, Ж, З', time: 0, duration: 4000 },
+      { text: 'И, Й, К, Л, М, Н, О, П', time: 4000, duration: 4000 },
+      { text: 'Р, С, Т, У, Ф, Х, Ц, Ч, Ш', time: 8000, duration: 4000 },
+      { text: 'Щ, Ъ, Ы, Ь, Э, Ю, Я', time: 12000, duration: 4000 },
+      { text: 'Это русский алфавит!', time: 16000, duration: 2000 },
+      { text: 'Тридцать три буквы - запомни!', time: 18000, duration: 4000 }
+    ];
+
+    // 生成字母卡片
+    function generateAlphabetCards() {
+      const grid = document.getElementById('alphabetGrid');
+      grid.innerHTML = alphabet.map((item, index) => `
+        <div class="letter-card" onclick="playLetterSound(${index})" style="animation-delay: ${index * 0.05}s">
+          <div class="letter">${item.letter}</div>
+          <div class="pronunciation">${item.pronunciation}</div>
+          <div style="font-size: 0.75rem; color: #999; margin-top: 3px;">${item.sound}</div>
+        </div>
+      `).join('');
+    }
+
+    // 播放控制
+    let isPlaying = false;
+    let currentTime = 0;
+    let playInterval;
+    let speed = 1;
+    let currentUtterance = null;
+
+    function togglePlay() {
+      const btn = document.getElementById('playBtn');
+      if (isPlaying) {
+        pause();
+        btn.textContent = '▶️';
+        btn.classList.remove('playing');
+      } else {
+        play();
+        btn.textContent = '⏸️';
+        btn.classList.add('playing');
+      }
+    }
+
+    function play() {
+      isPlaying = true;
+      
+      // 使用 Web Speech API 朗读歌词
+      function speakNextSegment() {
+        if (!isPlaying) return;
+        
+        // 找到当前应该朗读的段落
+        const adjustedTime = currentTime * speed;
+        const segment = lyricsSegments.find(s => 
+          adjustedTime >= s.time && adjustedTime < s.time + s.duration
+        );
+        
+        if (segment && !currentUtterance) {
+          const utterance = new SpeechSynthesisUtterance(segment.text);
+          utterance.lang = 'ru-RU';
+          utterance.rate = 0.9 * speed;
+          utterance.pitch = 1.1;
+          
+          utterance.onend = () => {
+            currentUtterance = null;
+          };
+          
+          currentUtterance = utterance;
+          speechSynthesis.speak(utterance);
+        }
+      }
+      
+      playInterval = setInterval(() => {
+        currentTime += 100;
+        updateProgress();
+        highlightLyrics();
+        speakNextSegment();
+        
+        if (currentTime >= 22000 / speed) {
+          currentTime = 0;
+          speechSynthesis.cancel();
+          currentUtterance = null;
+        }
+      }, 100 / speed);
+    }
+
+    function pause() {
+      isPlaying = false;
+      clearInterval(playInterval);
+      speechSynthesis.cancel();
+      currentUtterance = null;
+    }
+
+    function updateProgress() {
+      const progress = (currentTime * speed / 22000) * 100;
+      document.getElementById('progressFill').style.width = progress + '%';
+    }
+
+    function highlightLyrics() {
+      const lines = document.querySelectorAll('#lyricsRu .lyrics-line');
+      lines.forEach(line => {
+        const time = parseInt(line.dataset.time);
+        const adjustedTime = time / speed;
+        if (currentTime >= adjustedTime && currentTime < adjustedTime + 4000 / speed) {
+          line.classList.add('active');
+        } else {
+          line.classList.remove('active');
+        }
+      });
+    }
+
+    function changeSpeed() {
+      speed = parseFloat(document.getElementById('speedSelect').value);
+      if (isPlaying) {
+        pause();
+        play();
+      }
+    }
+
+    function playLetterSound(index) {
+      const item = alphabet[index];
+      
+      // 朗读字母
+      const utterance = new SpeechSynthesisUtterance(item.letter);
+      utterance.lang = 'ru-RU';
+      utterance.rate = 0.8;
+      utterance.pitch = 1;
+      
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utterance);
+      
+      // 视觉反馈
+      const cards = document.querySelectorAll('.letter-card');
+      cards[index].style.background = '#e3f2fd';
+      setTimeout(() => {
+        cards[index].style.background = 'white';
+      }, 500);
+    }
+
+    // 检查浏览器是否支持语音合成
+    function checkSpeechSupport() {
+      if (!('speechSynthesis' in window)) {
+        alert('您的浏览器不支持语音合成功能，请使用 Chrome、Edge 或 Safari 浏览器。');
+        return false;
+      }
+      return true;
+    }
+
+    // 初始化
+    generateAlphabetCards();
+    checkSpeechSupport();
+  </script>
+</body>
+</html>

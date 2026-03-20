@@ -1,0 +1,26 @@
+{
+  "name": "russian-news-crawler",
+  "version": "1.0.0",
+  "description": "俄罗斯新闻爬虫 - 爬取塔斯社、卫星社、俄新社新闻",
+  "main": "crawler/news_crawler.py",
+  "scripts": {
+    "crawl": "python crawler/news_crawler.py",
+    "crawl:win": "python .\\crawler\\news_crawler.py",
+    "translate": "python crawler/translate_service.py",
+    "tts": "python crawler/tts_service.py",
+    "server": "python server.py",
+    "dev": "python -m http.server 8080"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "keywords": [
+    "russian",
+    "news",
+    "crawler",
+    "tass",
+    "sputnik",
+    "ria"
+  ],
+  "author": "俄语世界",
+  "license": "MIT"
+}
