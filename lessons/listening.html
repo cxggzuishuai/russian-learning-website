@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>俄语听力训练 - Русский Мир</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}body{font-family:'Noto Sans SC',sans-serif;background:#f0f2f5;color:#333;line-height:1.8}
+    .lc{max-width:900px;margin:0 auto;padding:30px 20px;background:#fff;min-height:100vh}
+    .lh{text-align:center;margin-bottom:30px;padding-bottom:20px;border-bottom:2px solid #1565C0}
+    .lh h1{font-size:1.8rem;color:#1A1A2E;margin-bottom:6px}.lh p{color:#C62828;font-family:'Noto Serif'}
+    .back{display:inline-block;padding:10px 20px;background:#1565C0;color:#fff;border-radius:8px;margin-bottom:20px;text-decoration:none}.back:hover{background:#0D47A1}
+    .st{font-size:1.3rem;color:#1565C0;margin:28px 0 14px;padding-left:12px;border-left:4px solid #FFD54F}
+    .dialog-card{background:#f8f9fa;border-radius:12px;padding:24px;margin:16px 0;border:1px solid #e0e0e0}
+    .dialog-title{font-size:1.1rem;font-weight:700;color:#1565C0;margin-bottom:12px}
+    .dialog-line{display:flex;gap:12px;margin:8px 0;padding:8px 12px;border-radius:8px}
+    .dialog-line:nth-child(odd){background:#E3F2FD}
+    .dialog-line:nth-child(even){background:#FFF8E1}
+    .speaker{font-weight:700;min-width:30px;color:#C62828}
+    .ru-text{font-family:'Noto Serif';color:#1565C0;flex:1}
+    .cn-text{color:#666;font-size:0.9rem}
+    .toggle-btn{display:inline-block;padding:8px 16px;background:#78909C;color:#fff;border:none;border-radius:8px;cursor:pointer;margin:10px 0;font-size:0.85rem}
+    .toggle-btn:hover{background:#546E7A}
+    .hidden{display:none}
+    .note{background:#FFF8E1;border-left:4px solid #FFD54F;padding:14px;margin:14px 0;border-radius:8px;font-size:0.95rem}
+    .vocab-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .vocab-item{background:#E3F2FD;padding:4px 12px;border-radius:20px;font-size:0.85rem}
+    .vocab-item strong{color:#C62828}
+    .exercise{background:#E8F5E9;padding:16px;border-radius:8px;margin:16px 0}
+    .exercise h3{color:#2E7D32;margin-bottom:10px}
+    .exercise ol{padding-left:20px}
+    .exercise li{margin:6px 0}
+    .answer{color:#2E7D32;font-weight:600;cursor:pointer;user-select:none}
+    .answer::after{content:' 👈 点击查看答案';color:#999;font-weight:400;font-size:0.85rem}
+    .answer.show::after{content:''}
+    .answer span{visibility:hidden}
+    .answer.show span{visibility:visible}
+  </style>
+</head>
+<body>
+<div class="lc">
+  <a href="../index.html" class="back">← 返回首页</a>
+  <div class="lh">
+    <h1>俄语听力与对话训练</h1>
+    <p>Аудирование и диалоги</p>
+  </div>
+
+  <div class="st">🎧 初级对话 · A1</div>
+
+  <div class="dialog-card">
+    <div class="dialog-title">对话一：自我介绍 Знакомство</div>
+    <div class="dialog-line"><span class="speaker">А:</span><span class="ru-text">Здравствуйте! Меня зовут Анна. А как вас зовут?</span></div>
+    <div class="dialog-line"><span class="speaker">Б:</span><span class="ru-text">Здравствуйте! Меня зовут Борис. Очень приятно!</span></div>
+    <div class="dialog-line"><span class="speaker">А:</span><span class="ru-text">Мне тоже очень приятно. Вы студент?</span></div>
+    <div class="dialog-line"><span class="speaker">Б:</span><span class="ru-text">Да, я студент. Я учусь в университете. А вы?</span></div>
+    <div class="dialog-line"><span class="speaker">А:</span><span class="ru-text">Я тоже студентка. Я изучаю русский язык.</span></div>
+    <div class="dialog-line"><span class="speaker">Б:</span><span class="ru-text">Замечательно! Удачи вам!</span></div>
+    <div class="dialog-line"><span class="speaker">А:</span><span class="ru-text">Спасибо! И вам тоже!</span></div>
+    <button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('hidden')">📝 显示/隐藏中文翻译</button>
+    <div class="cn-text hidden" style="padding:12px;background:#f5f5f5;border-radius:8px;margin-top:8px;">
+      A：您好！我叫安娜。您叫什么名字？<br>
+      B：您好！我叫鲍里斯。很高兴认识您！<br>
+      A：我也很高兴。您是学生吗？<br>
+      B：是的，我是学生。我在大学学习。您呢？<br>
+      A：我也是学生。我学俄语。<br>
+      B：太好了！祝您好运！<br>
+      A：谢谢！也祝您好运！
+    </div>
+    <div class="vocab-list">
+      <span class="vocab-item"><strong>Здравствуйте</strong> 您好</span>
+      <span class="vocab-item"><strong>зовут</strong> 叫</span>
+      <span class="vocab-item"><strong>приятно</strong> 高兴</span>
+      <span class="vocab-item"><strong>учусь</strong> 学习</span>
+      <span class="vocab-item"><strong>удачи</strong> 好运</span>
+    </div>
+  </div>
+
+  <div class="dialog-card">
+    <div class="dialog-title">对话二：在商店 В магазине</div>
+    <div class="dialog-line"><span class="speaker">П:</span><span class="ru-text">Добрый день! Что вы хотите?</span></div>
+    <div class="dialog-line"><span class="speaker">К:</span><span class="ru-text">Здравствуйте! Дайте, пожалуйста, хлеб и молоко.</span></div>
+    <div class="dialog-line"><span class="speaker">П:</span><span class="ru-text">Белый хлеб или чёрный?</span></div>
+    <div class="dialog-line"><span class="speaker">К:</span><span class="ru-text">Чёрный, пожалуйста. Сколько стоит?</span></div>
+    <div class="dialog-line"><span class="speaker">П:</span><span class="ru-text">Хлеб — пятьдесят рублей, молоко — восемьдесят рублей. Всего сто тридцать рублей.</span></div>
+    <div class="dialog-line"><span class="speaker">К:</span><span class="ru-text">Вот, пожалуйста. Спасибо!</span></div>
+    <div class="dialog-line"><span class="speaker">П:</span><span class="ru-text">Спасибо! До свидания!</span></div>
+    <button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('hidden')">📝 显示/隐藏中文翻译</button>
+    <div class="cn-text hidden" style="padding:12px;background:#f5f5f5;border-radius:8px;margin-top:8px;">
+      售货员：您好！您想要什么？<br>
+      顾客：您好！请给我面包和牛奶。<br>
+      售货员：白面包还是黑面包？<br>
+      顾客：黑面包，谢谢。多少钱？<br>
+      售货员：面包50卢布，牛奶80卢布。一共130卢布。<br>
+      顾客：给您。谢谢！<br>
+      售货员：谢谢！再见！
+    </div>
+    <div class="vocab-list">
+      <span class="vocab-item"><strong>магазин</strong> 商店</span>
+      <span class="vocab-item"><strong>хлеб</strong> 面包</span>
+      <span class="vocab-item"><strong>молоко</strong> 牛奶</span>
+      <span class="vocab-item"><strong>сколько стоит</strong> 多少钱</span>
+      <span class="vocab-item"><strong>рубль</strong> 卢布</span>
+    </div>
+  </div>
+
+  <div class="dialog-card">
+    <div class="dialog-title">对话三：问路 Как пройти?</div>
+    <div class="dialog-line"><span class="speaker">А:</span><span class="ru-text">Извините, вы не подскажете, как пройти к метро?</span></div>
+    <div class="dialog-line"><span class="speaker">Б:</span><span class="ru-text">Конечно! Идите прямо, потом поверните направо.</span></div>
+    <div class="dialog-line"><span class="speaker">А:</span><span class="ru-text">Это далеко?</span></div>
+    <div class="dialog-line"><span class="speaker">Б:</span><span class="ru-text">Нет, не очень. Минут пять пешком.</span></div>
+    <div class="dialog-line"><span class="speaker">А:</span><span class="ru-text">Большое спасибо!</span></div>
+    <div class="dialog-line"><span class="speaker">Б:</span><span class="ru-text">Пожалуйста!</span></div>
+    <button class="toggle-btn" onclick="this.nextElementSibling.classList.toggle('hidden')">📝 显示/隐藏中文翻译</button>
+    <div class="cn-text hidden" style="padding:12px;background:#f5f5f5;border-radius:8px;margin-top:8px;">
+      A：请问，去地铁怎么走？<br>
+      B：当然！一直走，然后右转。<br>
+      A：远吗？<br>
+      B：不，不太远。步行大约五分钟。<br>
+      A：非常感谢！<br>
+      B：不客气！
+    </div>
+    <div class="vocab-list">
+      <span class="vocab-item"><strong>метро</strong> 地铁</span>
+      <span class="vocab-item"><strong>прямо</strong> 直走</span>
+      <span class="vocab-item"><strong>направо</strong> 向右</span>
+      <span class="vocab-item"><strong>далеко</strong> 远</span>
+      <span class="vocab-item"><strong>пешком</strong> 步行</span>
+    </div>
+  </div>
+
+  <div class="st">✏️ 听力练习</div>
+  <div class="exercise">
+    <h3>根据对话回答问题（点击查看答案）</h3>
+    <ol>
+      <li>Анна — студентка или учительница? <span class="answer" onclick="this.classList.toggle('show')"><span>Анна — студентка.（安娜是学生）</span></span></li>
+      <li>Сколько стоит хлеб? <span class="answer" onclick="this.classList.toggle('show')"><span>Хлеб стоит пятьдесят рублей.（面包50卢布）</span></span></li>
+      <li>Как пройти к метро? <span class="answer" onclick="this.classList.toggle('show')"><span>Идти прямо, потом повернуть направо.（直走然后右转）</span></span></li>
+      <li>Метро далеко? <span class="answer" onclick="this.classList.toggle('show')"><span>Нет, минут пять пешком.（不远，步行约5分钟）</span></span></li>
+    </ol>
+  </div>
+
+  <div class="note">
+    <strong>💡 学习建议：</strong>先不看翻译，尝试理解俄语对话内容；然后对照翻译检查理解是否正确；最后尝试朗读对话，模仿语调。
+  </div>
+
+  <div style="text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid #eee;">
+    <a href="../index.html" class="back">← 返回首页</a>
+  </div>
+</div>
+</body>
+</html>

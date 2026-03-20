@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>俄罗斯新闻 - Русский Мир · 俄语世界</title>
+  <meta name="description" content="实时俄罗斯新闻，来自塔斯社、卫星社、俄新社的权威报道，支持中文翻译和语音朗读">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* 新闻页面专用样式 */
+    .news-page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .news-header {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+      color: white;
+      border-radius: 16px;
+      margin-bottom: 30px;
+    }
+    
+    .news-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    
+    .news-header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    .news-filters {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+      padding: 8px 16px;
+      border: 2px solid #2a5298;
+      background: white;
+      color: #2a5298;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: #2a5298;
+      color: white;
+    }
+    
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 20px;
+    }
+    
+    .news-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    
+    .news-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    
+    .news-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: #f0f0f0;
+    }
+    
+    .news-content {
+      padding: 20px;
+    }
+    
+    .news-source {
+      display: inline-block;
+      padding: 4px 10px;
+      background: #e3f2fd;
+      color: #1976d2;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+    }
+    
+    .news-title-zh {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    
+    .news-title-ru {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    
+    .news-excerpt {
+      color: #555;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .news-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #999;
+      font-size: 0.85rem;
+    }
+    
+    .news-actions {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .action-btn {
+      width: 36px;
+      height: 36px;
+      border: none;
+      background: #f5f5f5;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+    }
+    
+    .action-btn:hover {
+      background: #e0e0e0;
+    }
+    
+    .action-btn.playing {
+      background: #4caf50;
+      color: white;
+    }
+    
+    /* 新闻详情弹窗 */
+    .news-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      overflow-y: auto;
+    }
+    
+    .news-modal.active {
+      display: block;
+    }
+    
+    .modal-content {
+      max-width: 800px;
+      margin: 50px auto;
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    
+    .modal-header {
+      position: relative;
+    }
+    
+    .modal-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    
+    .modal-body {
+      padding: 30px;
+    }
+    
+    .modal-source {
+      display: inline-block;
+      padding: 6px 14px;
+      background: #e3f2fd;
+      color: #1976d2;
+      border-radius: 16px;
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+    
+    .modal-title-zh {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    
+    .modal-title-ru {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    
+    .modal-content-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #444;
+      margin-bottom: 20px;
+    }
+    
+    .modal-actions {
+      display: flex;
+      gap: 15px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+    
+    .modal-btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+    
+    .btn-primary {
+      background: #2a5298;
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background: #1e3c72;
+    }
+    
+    .btn-secondary {
+      background: #f5f5f5;
+      color: #333;
+    }
+    
+    .btn-secondary:hover {
+      background: #e0e0e0;
+    }
+    
+    /* 加载状态 */
+    .loading-container {
+      text-align: center;
+      padding: 60px;
+    }
+    
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid #e3f2fd;
+      border-top-color: #2a5298;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* 空状态 */
+    .empty-state {
+      text-align: center;
+      padding: 60px;
+      color: #999;
+    }
+    
+    .empty-state-icon {
+      font-size: 4rem;
+      margin-bottom: 20px;
+    }
+    
+    /* 更新提示 */
+    .update-banner {
+      background: #fff3e0;
+      color: #e65100;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .update-btn {
+      padding: 6px 16px;
+      background: #e65100;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    /* 语音播放条 */
+    .audio-player {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+      padding: 15px 20px;
+      display: none;
+      align-items: center;
+      gap: 15px;
+      z-index: 999;
+    }
+    
+    .audio-player.active {
+      display: flex;
+    }
+    
+    .audio-info {
+      flex: 1;
+    }
+    
+    .audio-title {
+      font-weight: 600;
+      color: #333;
+    }
+    
+    .audio-progress {
+      flex: 2;
+      height: 4px;
+      background: #e0e0e0;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    
+    .audio-progress-bar {
+      height: 100%;
+      background: #2a5298;
+      width: 0%;
+      transition: width 0.1s;
+    }
+  </style>
+</head>
+<body>
+  <div class="news-page">
+    <!-- 页面头部 -->
+    <header class="news-header">
+      <h1>🇷🇺 俄罗斯新闻</h1>
+      <p>Новости России | 实时新闻 · 中文翻译 · 语音朗读</p>
+    </header>
+    
+    <!-- 更新提示 -->
+    <div class="update-banner" id="update-banner" style="display: none;">
+      <span>🔄 发现新新闻！</span>
+      <button class="update-btn" onclick="location.reload()">立即更新</button>
+    </div>
+    
+    <!-- 筛选器 -->
+    <div class="news-filters">
+      <button class="filter-btn active" data-source="all">全部</button>
+      <button class="filter-btn" data-source="tass">塔斯社</button>
+      <button class="filter-btn" data-source="sputnik">卫星社</button>
+      <button class="filter-btn" data-source="ria">俄新社</button>
+    </div>
+    
+    <!-- 新闻列表 -->
+    <div class="news-grid" id="news-grid">
+      <div class="loading-container">
+        <div class="loading-spinner"></div>
+        <p>正在加载新闻...</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 新闻详情弹窗 -->
+  <div class="news-modal" id="news-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <img class="modal-image" id="modal-image" src="" alt="">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <span class="modal-source" id="modal-source"></span>
+        <h2 class="modal-title-zh" id="modal-title-zh"></h2>
+        <h3 class="modal-title-ru" id="modal-title-ru"></h3>
+        <div class="modal-content-text" id="modal-content"></div>
+        <div class="modal-actions">
+          <button class="modal-btn btn-primary" onclick="playCurrentAudio()">
+            <span>🔊</span> 朗读中文
+          </button>
+          <button class="modal-btn btn-secondary" onclick="openOriginal()">
+            <span>🔗</span> 查看原文
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 语音播放器 -->
+  <div class="audio-player" id="audio-player">
+    <button class="action-btn" onclick="togglePlay()">
+      <span id="play-icon">⏸️</span>
+    </button>
+    <div class="audio-info">
+      <div class="audio-title" id="audio-title">正在播放...</div>
+    </div>
+    <div class="audio-progress">
+      <div class="audio-progress-bar" id="audio-progress"></div>
+    </div>
+    <button class="action-btn" onclick="closeAudio()">✕</button>
+  </div>
+
+  <script>
+    // 全局变量
+    let allNews = [];
+    let currentNews = null;
+    let currentAudio = null;
+    
+    // 加载新闻数据
+    async function loadNews() {
+      try {
+        const response = await fetch('data/news/news_data.json');
+        if (!response.ok) throw new Error('加载失败');
+        
+        allNews = await response.json();
+        renderNews(allNews);
+      } catch (error) {
+        console.error('加载新闻失败:', error);
+        document.getElementById('news-grid').innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">📰</div>
+            <h3>暂无新闻数据</h3>
+            <p>请先运行爬虫程序获取新闻</p>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #999;">
+              运行命令: python .\\crawler\\news_crawler.py
+            </p>
+          </div>
+        `;
+      }
+    }
+    
+    // 渲染新闻列表
+    function renderNews(news) {
+      const grid = document.getElementById('news-grid');
+      
+      if (news.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-icon">📭</div>
+            <h3>没有找到相关新闻</h3>
+          </div>
+        `;
+        return;
+      }
+      
+      grid.innerHTML = news.map(item => `
+        <article class="news-card" onclick="openNews('${item.id}')">
+          <img class="news-image" src="${item.images[0] || 'data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect fill=%22%23f0f0f0%22 width=%22400%22 height=%22200%22/><text fill=%22%23999%22 x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22>暂无图片</text></svg>'}" alt="" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 200%22><rect fill=%22%23f0f0f0%22 width=%22400%22 height=%22200%22/><text fill=%22%23999%22 x=%2250%%22 y=%2250%%22 text-anchor=%22middle%22>暂无图片</text></svg>'">
+          <div class="news-content">
+            <span class="news-source">${item.source_name}</span>
+            <h3 class="news-title-zh">${item.title_zh}</h3>
+            <h4 class="news-title-ru">${item.title_ru}</h4>
+            <p class="news-excerpt">${item.content_zh.substring(0, 150)}...</p>
+            <div class="news-meta">
+              <span>${formatDate(item.crawled_at)}</span>
+              <div class="news-actions" onclick="event.stopPropagation()">
+                <button class="action-btn" onclick="playAudio('${item.id}', '${escapeHtml(item.title_zh)}')" title="朗读">
+                  🔊
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+    
+    // 筛选新闻
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        
+        const source = this.dataset.source;
+        if (source === 'all') {
+          renderNews(allNews);
+        } else {
+          renderNews(allNews.filter(n => n.source === source));
+        }
+      });
+    });
+    
+    // 打开新闻详情
+    function openNews(id) {
+      const news = allNews.find(n => n.id === id);
+      if (!news) return;
+      
+      currentNews = news;
+      
+      document.getElementById('modal-source').textContent = news.source_name;
+      document.getElementById('modal-title-zh').textContent = news.title_zh;
+      document.getElementById('modal-title-ru').textContent = news.title_ru;
+      document.getElementById('modal-content').textContent = news.content_zh;
+      document.getElementById('modal-image').src = news.images[0] || '';
+      
+      document.getElementById('news-modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    // 关闭弹窗
+    function closeModal() {
+      document.getElementById('news-modal').classList.remove('active');
+      document.body.style.overflow = '';
+      stopAudio();
+    }
+    
+    // 打开原文
+    function openOriginal() {
+      if (currentNews) {
+        window.open(currentNews.url, '_blank');
+      }
+    }
+    
+    // 播放语音（使用Web Speech API）
+    function playAudio(id, title) {
+      const news = allNews.find(n => n.id === id);
+      if (!news) return;
+      
+      stopAudio();
+      
+      // 使用Web Speech API
+      const utterance = new SpeechSynthesisUtterance(news.content_zh);
+      utterance.lang = 'zh-CN';
+      utterance.rate = 0.9;
+      
+      currentAudio = utterance;
+      
+      // 显示播放器
+      document.getElementById('audio-title').textContent = title || news.title_zh;
+      document.getElementById('audio-player').classList.add('active');
+      document.getElementById('play-icon').textContent = '⏸️';
+      
+      utterance.onend = () => {
+        document.getElementById('play-icon').textContent = '▶️';
+      };
+      
+      speechSynthesis.speak(utterance);
+    }
+    
+    function playCurrentAudio() {
+      if (currentNews) {
+        playAudio(currentNews.id, currentNews.title_zh);
+      }
+    }
+    
+    function togglePlay() {
+      if (speechSynthesis.paused) {
+        speechSynthesis.resume();
+        document.getElementById('play-icon').textContent = '⏸️';
+      } else if (speechSynthesis.speaking) {
+        speechSynthesis.pause();
+        document.getElementById('play-icon').textContent = '▶️';
+      }
+    }
+    
+    function stopAudio() {
+      speechSynthesis.cancel();
+      document.getElementById('audio-player').classList.remove('active');
+    }
+    
+    function closeAudio() {
+      stopAudio();
+    }
+    
+    // 格式化日期
+    function formatDate(dateStr) {
+      const date = new Date(dateStr);
+      return date.toLocaleDateString('zh-CN', {
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      });
+    }
+    
+    // HTML转义
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+    
+    // 点击弹窗外部关闭
+    document.getElementById('news-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeModal();
+      }
+    });
+    
+    // ESC键关闭
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+    
+    // 初始化
+    loadNews();
+    
+    // 每分钟检查更新
+    setInterval(() => {
+      fetch('data/news/news_data.json', { method: 'HEAD' })
+        .then(response => {
+          const lastModified = response.headers.get('last-modified');
+          // 可以在这里实现更新提示逻辑
+        });
+    }, 60000);
+  </script>
+</body>
+</html>
