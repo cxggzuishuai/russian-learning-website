@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>俄语世界 - 使用指南</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Microsoft YaHei',sans-serif;background:#f5f5f5;color:#333;line-height:1.8;padding:40px 20px}
+.container{max-width:900px;margin:0 auto;background:#fff;border-radius:16px;box-shadow:0 4px 20px rgba(0,0,0,0.08);overflow:hidden}
+.header{background:linear-gradient(135deg,#1A1A2E,#003C8F);color:#fff;padding:50px 40px;text-align:center}
+.header h1{font-size:2rem;margin-bottom:8px;color:#FFD54F}
+.header p{color:rgba(255,255,255,0.7);font-size:1.1rem}
+.content{padding:40px}
+h2{color:#1565C0;font-size:1.4rem;margin:30px 0 16px;padding-bottom:8px;border-bottom:2px solid #E3F2FD;display:flex;align-items:center;gap:10px}
+h2:first-child{margin-top:0}
+h3{color:#C62828;font-size:1.1rem;margin:20px 0 10px}
+p{margin-bottom:12px}
+.step-box{background:#F3F4F6;border-left:4px solid #1565C0;padding:16px 20px;border-radius:0 8px 8px 0;margin:12px 0}
+.step-box.warning{border-left-color:#FF9800;background:#FFF8E1}
+.step-box.success{border-left-color:#4CAF50;background:#E8F5E9}
+.step-num{display:inline-block;background:#1565C0;color:#fff;width:28px;height:28px;border-radius:50%;text-align:center;line-height:28px;font-weight:bold;margin-right:8px;font-size:0.9rem}
+ol,ul{padding-left:24px;margin:10px 0}
+li{margin:6px 0}
+.screenshot-hint{background:#E8EAF6;padding:12px 16px;border-radius:8px;margin:12px 0;font-size:0.9rem;color:#3F51B5}
+kbd{background:#eee;padding:2px 8px;border-radius:4px;font-size:0.85rem;border:1px solid #ccc}
+.footer-note{text-align:center;padding:20px;color:#999;font-size:0.85rem;border-top:1px solid #eee;margin-top:30px}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th{background:#E3F2FD;padding:10px 14px;text-align:left;font-size:0.9rem}
+td{padding:10px 14px;border-bottom:1px solid #eee;font-size:0.9rem}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="header">
+  <h1>📘 俄语世界 · 使用指南</h1>
+  <p>零代码操作，轻松管理你的俄语学习网站</p>
+</div>
+
+<div class="content">
+
+<h2>🚀 如何打开网站</h2>
+
+<div class="step-box">
+  <span class="step-num">1</span> 找到文件夹 <strong>俄语学习网站</strong>
+</div>
+<div class="step-box">
+  <span class="step-num">2</span> 双击 <strong>index.html</strong> 文件，浏览器会自动打开网站
+</div>
+<div class="step-box success">
+  就这么简单！不需要安装任何软件，不需要启动服务器。
+</div>
+
+<h2>📦 资源上架 / 下架</h2>
+
+<h3>进入管理后台</h3>
+<p>点击网站右上角的红色 <strong>「管理后台」</strong> 按钮，会弹出管理面板。</p>
+
+<h3>添加新资源（上架）</h3>
+<div class="step-box">
+  <span class="step-num">1</span> 在管理面板中，确保选中 <strong>「📦 资源管理」</strong> 标签页
+</div>
+<div class="step-box">
+  <span class="step-num">2</span> 点击右上角蓝色 <strong>「+ 添加资源」</strong> 按钮
+</div>
+<div class="step-box">
+  <span class="step-num">3</span> 填写资源信息（带 * 的必填）：
+</div>
+
+<table>
+  <tr><th>字段</th><th>说明</th><th>示例</th></tr>
+  <tr><td>资源名称（中文）*</td><td>资源的中文标题</td><td>俄语日常对话100句</td></tr>
+  <tr><td>资源名称（俄文）</td><td>俄文标题，可选</td><td>100 фраз на каждый день</td></tr>
+  <tr><td>分类 *</td><td>下拉选择所属分类</td><td>词汇积累</td></tr>
+  <tr><td>难度级别</td><td>入门 / 中级 / 高级</td><td>入门</td></tr>
+  <tr><td>资源类型</td><td>文章 / 视频 / 音频 / 闪卡</td><td>文章</td></tr>
+  <tr><td>资源链接</td><td>点击后跳转的网址</td><td>https://example.com/lesson1</td></tr>
+  <tr><td>资源描述</td><td>简要介绍资源内容</td><td>精选100句日常用语...</td></tr>
+  <tr><td>缩略图URL</td><td>封面图片网址（可选）</td><td>留空用默认图标</td></tr>
+  <tr><td>标签</td><td>逗号分隔的关键词</td><td>日常, 对话, 入门</td></tr>
+  <tr><td>上架状态</td><td>开关控制是否显示</td><td>打开 = 上架</td></tr>
+  <tr><td>首页推荐</td><td>是否显示在首页精选区</td><td>打开 = 推荐</td></tr>
+</table>
+
+<div class="step-box">
+  <span class="step-num">4</span> 点击 <strong>「保存」</strong>，资源立刻生效
+</div>
+
+<h3>下架资源</h3>
+<p>在资源列表中，找到要下架的资源，点击红色 <strong>「下架」</strong> 按钮即可。下架后资源不会被删除，可随时重新上架。</p>
+
+<h3>重新上架</h3>
+<p>找到已下架的资源（可通过筛选「已下架」状态查看），点击绿色 <strong>「上架」</strong> 按钮。</p>
+
+<h3>编辑资源</h3>
+<p>点击资源行的 <strong>「编辑」</strong> 按钮，修改信息后保存。</p>
+
+<h3>删除资源</h3>
+<p>点击 <strong>「删除」</strong> 按钮（请谨慎，删除后不可恢复）。</p>
+
+<h3>搜索和筛选</h3>
+<p>在管理面板顶部有搜索框和筛选器，可按关键词搜索、按分类筛选、按上架/下架状态筛选。</p>
+
+<h2>🎨 首页布局调整（拖拉排序）</h2>
+
+<div class="step-box">
+  <span class="step-num">1</span> 进入管理后台，点击 <strong>「🎨 首页布局」</strong> 标签页
+</div>
+<div class="step-box">
+  <span class="step-num">2</span> 你会看到所有首页板块的列表，每个板块前面有 <strong>⠿</strong> 拖拽手柄
+</div>
+<div class="step-box">
+  <span class="step-num">3</span> <strong>拖拽排序</strong>：按住板块不放，上下拖动到想要的位置，松开即保存
+</div>
+<div class="step-box">
+  <span class="step-num">4</span> <strong>显示/隐藏</strong>：每个板块右侧有开关，关掉后该板块不显示在首页
+</div>
+<div class="step-box success">
+  修改实时生效！关闭管理面板后首页会自动刷新显示新布局。
+</div>
+
+<p>首页板块包括：</p>
+<table>
+  <tr><th>板块</th><th>说明</th></tr>
+  <tr><td>🏠 顶部横幅</td><td>最顶部的大图+搜索框区域</td></tr>
+  <tr><td>⭐ 精选推荐</td><td>展示标记为「推荐」的资源卡片</td></tr>
+  <tr><td>📂 课程分类</td><td>8大分类的入口卡片</td></tr>
+  <tr><td>🆕 最新上线</td><td>最新添加的资源列表</td></tr>
+  <tr><td>📊 学习数据</td><td>统计数字展示区</td></tr>
+  <tr><td>ℹ️ 关于我们</td><td>平台介绍文字</td></tr>
+</table>
+
+<h2>⚙️ 网站设置</h2>
+
+<p>在管理后台点击 <strong>「⚙️ 网站设置」</strong> 标签页，可以修改：</p>
+<ul>
+  <li><strong>网站标题</strong>：显示在导航栏的名称</li>
+  <li><strong>网站副标题</strong>：Hero区域的描述文字</li>
+  <li><strong>Hero 主标题</strong>：大横幅的主要文字</li>
+  <li><strong>Hero 俄文副标题</strong>：大横幅的俄文文字</li>
+</ul>
+
+<h2>💾 数据备份与恢复</h2>
+
+<div class="step-box warning">
+  ⚠️ 重要：所有修改保存在浏览器的本地存储中。如果清除浏览器数据，修改会丢失！请定期备份。
+</div>
+
+<h3>导出备份</h3>
+<p>在「网站设置」页面，点击 <strong>「📦 导出全部数据」</strong>，会下载一个 JSON 文件，包含所有资源和布局设置。</p>
+
+<h3>导入数据</h3>
+<p>点击 <strong>「📥 导入数据」</strong>，选择之前导出的 JSON 文件，数据会自动恢复。</p>
+
+<h3>恢复默认</h3>
+<p>点击 <strong>「🔄 恢复默认数据」</strong> 可以将所有数据恢复到初始状态（所有修改会丢失）。</p>
+
+<h2>📁 文件结构说明</h2>
+
+<table>
+  <tr><th>文件/文件夹</th><th>说明</th></tr>
+  <tr><td>index.html</td><td>网站主页面（双击打开）</td></tr>
+  <tr><td>使用指南.html</td><td>本说明文档</td></tr>
+  <tr><td>css/style.css</td><td>网站样式（一般不需要修改）</td></tr>
+  <tr><td>js/app.js</td><td>网站功能代码（一般不需要修改）</td></tr>
+  <tr><td>data/</td><td>默认数据文件（备用参考）</td></tr>
+  <tr><td>images/</td><td>可放置图片资源</td></tr>
+</table>
+
+<h2>❓ 常见问题</h2>
+
+<h3>Q: 修改后为什么刷新页面数据还在？</h3>
+<p>A: 数据保存在浏览器的「本地存储」中，刷新不会丢失。只有清除浏览器数据或点击「恢复默认」才会重置。</p>
+
+<h3>Q: 换了电脑怎么办？</h3>
+<p>A: 先在原电脑「导出全部数据」，把 JSON 文件拷到新电脑，再「导入数据」即可。</p>
+
+<h3>Q: 资源链接填什么？</h3>
+<p>A: 填写资源的实际网址（如视频链接、文章链接等）。如果暂时没有，填 # 即可。</p>
+
+<h3>Q: 如何部署到互联网上？</h3>
+<p>A: 将整个「俄语学习网站」文件夹上传到任意网页托管服务（如 GitHub Pages、Vercel、Netlify），即可通过网址访问。这些服务都是免费的。</p>
+
+<div class="footer-note">
+  俄语世界 · Русский Мир © 2026<br>
+  Добро пожаловать в мир русского языка!
+</div>
+
+</div>
+</div>
+</body>
+</html>

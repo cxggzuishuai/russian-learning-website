@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Русский Мир · 俄语世界</title>
+  <meta name="description" content="专为中国俄语学习者打造的在线学习平台">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== Hero 横幅 ===== -->
+  <section class="hero-logo-banner" id="hero-banner">
+    <div class="hero-logo-bg-left"></div>
+    <div class="hero-logo-bg-right"></div>
+    <div class="hero-logo-main">
+      <div class="hero-logo-icon">🇷🇺</div>
+      <div class="hero-logo-text">
+        <div class="hero-logo-title-ru">Русский Мир</div>
+        <div class="hero-logo-title-cn">俄语世界</div>
+      </div>
+    </div>
+    <div class="hero-logo-bottom">
+      <div class="hero-logo-subtitle">Начни свой путь к русскому языку</div>
+      <div class="hero-logo-desc">开启你的俄语之旅 · 专为中国学习者打造</div>
+    </div>
+  </section>
+
+  <!-- ===== 主布局 ===== -->
+  <div class="main-layout" id="main-layout">
+    
+    <!-- 左侧边栏 -->
+    <aside class="left-sidebar" id="left-sidebar">
+      
+      <!-- 工具栏 -->
+      <div class="sidebar-toolbar">
+        <button class="toolbar-btn" onclick="app.goHome()" title="返回主页">
+          <span>🏠</span>
+        </button>
+        <button class="toolbar-btn" onclick="app.toggleTheme('light')" id="theme-light" title="日间模式">
+          <span>☀️</span>
+        </button>
+        <button class="toolbar-btn" onclick="app.toggleTheme('dark')" id="theme-dark" title="夜间模式">
+          <span>🌙</span>
+        </button>
+        <button class="toolbar-btn" onclick="app.toggleTheme('auto')" id="theme-auto" title="跟随系统">
+          <span>🔄</span>
+        </button>
+      </div>
+
+      <!-- 搜索 -->
+      <div class="sidebar-search-section">
+        <div class="sidebar-search-box">
+          <input type="text" placeholder="搜索课程、资源..." id="hero-search-input" onkeypress="if(event.key==='Enter')app.search()">
+          <button onclick="app.search()">🔍</button>
+        </div>
+      </div>
+
+      <!-- 分类导航 -->
+      <div class="sidebar-categories">
+        <ul class="category-sidebar-list" id="category-sidebar-list">
+          <!-- JS 动态渲染 -->
+        </ul>
+      </div>
+
+    </aside>
+
+    <!-- 右侧内容 -->
+    <div class="right-content" id="right-content">
+      <main class="main-content" id="main-content">
+        <!-- JS 动态渲染 -->
+      </main>
+    </div>
+
+  </div>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p>© 2026 Русский Мир · 俄语世界 | 专为中国俄语学习者打造</p>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

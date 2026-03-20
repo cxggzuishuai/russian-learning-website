@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日常俄语500词 - Русский Мир</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .lesson-container { max-width: 1000px; margin: 0 auto; padding: 30px 20px; background: #fff; }
+    .lesson-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #1565C0; }
+    .lesson-title { font-size: 2rem; color: #1A1A2E; margin-bottom: 8px; }
+    .vocab-category { margin: 30px 0; }
+    .category-title { font-size: 1.3rem; color: #1565C0; margin-bottom: 16px; padding: 10px 16px; background: #E3F2FD; border-radius: 8px; display: flex; align-items: center; gap: 10px; }
+    .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+    .vocab-card { background: #f8f9fa; padding: 12px; border-radius: 8px; border-left: 3px solid #1565C0; transition: all 0.3s; display: flex; align-items: center; gap: 10px; }
+    .vocab-card:hover { background: #E3F2FD; transform: translateX(5px); }
+    .vocab-text { flex: 1; }
+    .vocab-ru { font-size: 1.05rem; font-weight: 700; color: #C62828; margin-bottom: 2px; }
+    .vocab-cn { font-size: 0.9rem; color: #333; }
+    .play-btn { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: #1565C0; color: #fff; border: none; border-radius: 50%; font-size: 0.85rem; cursor: pointer; transition: all 0.3s; flex-shrink: 0; }
+    .play-btn:hover { background: #C62828; transform: scale(1.1); }
+    .play-btn.playing { background: #C62828; animation: pulse 0.6s infinite; }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
+    .back-btn { display: inline-block; padding: 10px 20px; background: #1565C0; color: #fff; border-radius: 8px; margin-bottom: 20px; }
+    .back-btn:hover { background: #0D47A1; }
+  </style>
+</head>
+<body>
+<div class="lesson-container">
+  <a href="../index.html" class="back-btn">← 返回首页</a>
+  
+  <div class="lesson-header">
+    <h1 class="lesson-title">日常俄语500词速记</h1>
+    <p style="color:#666;">500 самых употребительных слов · 点击 🔊 听发音</p>
+  </div>
+
+  <div id="vocab-content"></div>
+
+  <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+    <a href="../index.html" class="back-btn">← 返回首页</a>
+    <p style="color:#999; margin-top:16px; font-size:0.9rem;">持续更新中... 更多词汇敬请期待</p>
+  </div>
+</div>
+
+<script>
+const vocabData = [
+  { title: '👋 问候与礼貌用语', words: [
+    ['Привет','你好（非正式）'],['Здравствуйте','您好（正式）'],['До свидания','再见'],['Пока','拜拜'],
+    ['Спасибо','谢谢'],['Большое спасибо','非常感谢'],['Пожалуйста','请/不客气'],['Извините','对不起'],
+    ['Простите','请原谅'],['Доброе утро','早上好'],['Добрый день','下午好'],['Добрый вечер','晚上好'],
+    ['Спокойной ночи','晚安'],['Как дела?','你好吗？'],['Хорошо','好'],['Плохо','不好']
+  ]},
+  { title: '👤 人称代词', words: [
+    ['Я','我'],['Ты','你'],['Он','他'],['Она','她'],['Оно','它'],['Мы','我们'],['Вы','你们/您'],['Они','他们'],
+    ['Мой','我的（阳）'],['Моя','我的（阴）'],['Твой','你的（阳）'],['Твоя','你的（阴）'],
+    ['Его','他的'],['Её','她的'],['Наш','我们的'],['Ваш','你们的/您的']
+  ]},
+  { title: '🔢 数字', words: [
+    ['Ноль','0'],['Один','1'],['Два','2'],['Три','3'],['Четыре','4'],['Пять','5'],
+    ['Шесть','6'],['Семь','7'],['Восемь','8'],['Девять','9'],['Десять','10'],
+    ['Двадцать','20'],['Тридцать','30'],['Сорок','40'],['Пятьдесят','50'],['Сто','100'],['Тысяча','1000']
+  ]},
+  { title: '👨‍👩‍👧‍👦 家庭成员', words: [
+    ['Семья','家庭'],['Мама','妈妈'],['Папа','爸爸'],['Родители','父母'],['Брат','兄弟'],['Сестра','姐妹'],
+    ['Сын','儿子'],['Дочь','女儿'],['Муж','丈夫'],['Жена','妻子'],['Ребёнок','孩子'],
+    ['Бабушка','奶奶/姥姥'],['Дедушка','爷爷/姥爷'],['Дядя','叔叔'],['Тётя','阿姨'],['Друг','朋友']
+  ]},
+  { title: '🏠 日常生活', words: [
+    ['Дом','房子'],['Квартира','公寓'],['Комната','房间'],['Кухня','厨房'],['Ванная','浴室'],
+    ['Стол','桌子'],['Стул','椅子'],['Кровать','床'],['Окно','窗户'],['Дверь','门'],
+    ['Телефон','电话'],['Компьютер','电脑'],['Книга','书'],['Ключ','钥匙'],['Деньги','钱'],['Машина','汽车']
+  ]},
+  { title: '🍽️ 食物与饮料', words: [
+    ['Хлеб','面包'],['Молоко','牛奶'],['Вода','水'],['Чай','茶'],['Кофе','咖啡'],['Сок','果汁'],
+    ['Мясо','肉'],['Рыба','鱼'],['Курица','鸡肉'],['Рис','米饭'],['Яйцо','鸡蛋'],
+    ['Яблоко','苹果'],['Суп','汤'],['Сахар','糖'],['Соль','盐'],['Масло','油/黄油']
+  ]},
+  { title: '📅 时间表达', words: [
+    ['Сегодня','今天'],['Вчера','昨天'],['Завтра','明天'],['Сейчас','现在'],['Потом','之后'],
+    ['Утро','早晨'],['День','白天'],['Вечер','晚上'],['Ночь','夜晚'],
+    ['Неделя','星期'],['Месяц','月份'],['Год','年'],['Час','小时'],['Минута','分钟'],
+    ['Понедельник','星期一'],['Вторник','星期二'],['Среда','星期三'],['Четверг','星期四'],
+    ['Пятница','星期五'],['Суббота','星期六'],['Воскресенье','星期日']
+  ]},
+  { title: '💬 常用动词', words: [
+    ['Быть','是/在'],['Говорить','说话'],['Делать','做'],['Знать','知道'],['Идти','走/去'],
+    ['Любить','爱/喜欢'],['Работать','工作'],['Учиться','学习'],['Жить','生活/居住'],['Хотеть','想要'],
+    ['Есть','吃'],['Пить','喝'],['Читать','读'],['Писать','写'],['Смотреть','看'],
+    ['Слушать','听'],['Понимать','理解'],['Думать','想/思考'],['Мочь','能/可以'],['Видеть','看见']
+  ]},
+  { title: '🎨 颜色', words: [
+    ['Красный','红色'],['Синий','蓝色（深）'],['Голубой','蓝色（浅）'],['Зелёный','绿色'],
+    ['Жёлтый','黄色'],['Белый','白色'],['Чёрный','黑色'],['Серый','灰色'],
+    ['Оранжевый','橙色'],['Розовый','粉色'],['Коричневый','棕色'],['Фиолетовый','紫色']
+  ]},
+  { title: '🌤️ 天气与自然', words: [
+    ['Погода','天气'],['Солнце','太阳'],['Дождь','雨'],['Снег','雪'],['Ветер','风'],
+    ['Холодно','冷'],['Жарко','热'],['Тепло','暖和'],['Небо','天空'],['Море','海'],
+    ['Река','河'],['Лес','森林'],['Гора','山'],['Цветок','花'],['Дерево','树']
+  ]},
+  { title: '🏙️ 城市与交通', words: [
+    ['Город','城市'],['Улица','街道'],['Площадь','广场'],['Магазин','商店'],['Ресторан','餐厅'],
+    ['Аптека','药店'],['Больница','医院'],['Школа','学校'],['Университет','大学'],
+    ['Метро','地铁'],['Автобус','公交车'],['Такси','出租车'],['Вокзал','火车站'],['Аэропорт','机场']
+  ]}
+];
+
+function renderVocab() {
+  const container = document.getElementById('vocab-content');
+  container.innerHTML = vocabData.map(cat => `
+    <div class="vocab-category">
+      <div class="category-title"><span>${cat.title}</span></div>
+      <div class="vocab-grid">
+        ${cat.words.map(w => `
+          <div class="vocab-card">
+            <div class="vocab-text">
+              <div class="vocab-ru">${w[0]}</div>
+              <div class="vocab-cn">${w[1]}</div>
+            </div>
+            <button class="play-btn" onclick="speakRu('${w[0].replace(/'/g, "\\'")}', this)" title="听发音">🔊</button>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+renderVocab();
+
+function speakRu(text, btn) {
+  try {
+    const encoded = encodeURIComponent(text);
+    const url = 'https://translate.google.com/translate_tts?ie=UTF-8&tl=ru&client=tw-ob&q=' + encoded;
+    const audio = new Audio(url);
+    if (btn) {
+      btn.classList.add('playing');
+      audio.onended = () => btn.classList.remove('playing');
+      audio.onerror = () => { btn.classList.remove('playing'); fallbackSpeak(text, btn); };
+    }
+    audio.play().catch(() => fallbackSpeak(text, btn));
+  } catch(e) { fallbackSpeak(text, btn); }
+}
+
+function fallbackSpeak(text, btn) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'ru-RU'; u.rate = 0.8;
+    const v = window.speechSynthesis.getVoices().find(v => v.lang.startsWith('ru'));
+    if (v) u.voice = v;
+    if (btn) { btn.classList.add('playing'); u.onend = () => btn.classList.remove('playing'); u.onerror = () => btn.classList.remove('playing'); }
+    window.speechSynthesis.speak(u);
+  } else { if (btn) btn.classList.remove('playing'); }
+}
+
+if ('speechSynthesis' in window) {
+  window.speechSynthesis.getVoices();
+  window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+}
+</script>
+</body>
+</html>

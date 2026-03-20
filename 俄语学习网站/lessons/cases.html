@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>俄语名词六格变化详解 - Русский Мир</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600;700&family=Noto+Serif:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .lesson-container { max-width: 900px; margin: 0 auto; padding: 30px 20px; background: #fff; }
+    .lesson-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #1565C0; }
+    .lesson-title { font-size: 2rem; color: #1A1A2E; margin-bottom: 8px; }
+    .lesson-title-ru { font-size: 1.3rem; color: #C62828; font-family: 'Noto Serif'; }
+    .section-title { font-size: 1.4rem; color: #1565C0; margin: 30px 0 16px; padding-left: 12px; border-left: 4px solid #FFD54F; }
+    .case-table { width: 100%; border-collapse: collapse; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .case-table th { background: #1565C0; color: #fff; padding: 12px; text-align: left; font-weight: 600; }
+    .case-table td { padding: 12px; border-bottom: 1px solid #eee; }
+    .case-table tr:hover { background: #f5f5f5; }
+    .case-name { font-weight: 700; color: #C62828; font-size: 1.1rem; }
+    .note-box { background: #FFF8E1; border-left: 4px solid #FFD54F; padding: 16px; margin: 16px 0; border-radius: 8px; }
+    .example-box { background: #E3F2FD; padding: 16px; margin: 12px 0; border-radius: 8px; }
+    .back-btn { display: inline-block; padding: 10px 20px; background: #1565C0; color: #fff; border-radius: 8px; margin-bottom: 20px; }
+    .back-btn:hover { background: #0D47A1; }
+    .play-btn { display: inline-flex; align-items: center; justify-content: center; padding: 4px 10px; background: #1565C0; color: #fff; border: none; border-radius: 16px; font-size: 0.75rem; cursor: pointer; transition: all 0.3s; vertical-align: middle; margin-left: 4px; }
+    .play-btn:hover { background: #C62828; transform: scale(1.05); }
+    .play-btn.playing { background: #C62828; animation: pulse 0.6s infinite; }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+    .gender-badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-right: 6px; }
+    .gender-m { background: #BBDEFB; color: #0D47A1; }
+    .gender-f { background: #F8BBD0; color: #880E4F; }
+    .gender-n { background: #C8E6C9; color: #1B5E20; }
+  </style>
+</head>
+<body>
+<div class="lesson-container">
+  <a href="../index.html" class="back-btn">← 返回首页</a>
+  
+  <div class="lesson-header">
+    <h1 class="lesson-title">俄语名词六格变化详解</h1>
+    <p class="lesson-title-ru">Склонение существительных - Шесть падежей</p>
+  </div>
+
+  <div class="section-title">📚 什么是格（Падеж）？</div>
+  <p>俄语名词有<strong>六个格</strong>，通过词尾变化表示名词在句子中的语法功能。这是俄语语法的核心难点之一。</p>
+  
+  <div class="note-box">
+    <strong>💡 为什么要学格变化？</strong><br>
+    俄语不像汉语用"的、在、给"等词表示关系，而是通过改变名词词尾来表达。掌握六格是说出正确俄语句子的关键！
+  </div>
+
+  <div class="section-title">🔢 俄语六格总览</div>
+  <table class="case-table">
+    <tr>
+      <th style="width:20%;">格名称</th>
+      <th style="width:15%;">俄文</th>
+      <th style="width:20%;">提问词</th>
+      <th style="width:45%;">主要用法</th>
+    </tr>
+    <tr>
+      <td><span class="case-name">1. 主格</span></td>
+      <td>Именительный</td>
+      <td>Кто? Что?<br>（谁？什么？）</td>
+      <td>句子主语，表示动作执行者</td>
+    </tr>
+    <tr>
+      <td><span class="case-name">2. 属格</span></td>
+      <td>Родительный</td>
+      <td>Кого? Чего?<br>（谁的？什么的？）</td>
+      <td>所属关系、否定、数量、起点</td>
+    </tr>
+    <tr>
+      <td><span class="case-name">3. 与格</span></td>
+      <td>Дательный</td>
+      <td>Кому? Чему?<br>（给谁？给什么？）</td>
+      <td>间接宾语、年龄、方向</td>
+    </tr>
+    <tr>
+      <td><span class="case-name">4. 宾格</span></td>
+      <td>Винительный</td>
+      <td>Кого? Что?<br>（谁？什么？）</td>
+      <td>直接宾语、方向、时间段</td>
+    </tr>
+    <tr>
+      <td><span class="case-name">5. 工具格</span></td>
+      <td>Творительный</td>
+      <td>Кем? Чем?<br>（用谁？用什么？）</td>
+      <td>工具手段、职业、伴随</td>
+    </tr>
+    <tr>
+      <td><span class="case-name">6. 前置格</span></td>
+      <td>Предложный</td>
+      <td>О ком? О чём?<br>（关于谁？关于什么？）</td>
+      <td>地点、话题（必须与前置词连用）</td>
+    </tr>
+  </table>
+
+  <div class="section-title">📖 名词性别与格变化</div>
+  <p>俄语名词分为三个性别，每个性别的格变化规律不同：</p>
+
+  <div class="example-box">
+    <strong>性别判断规则：</strong><br>
+    <span class="gender-badge gender-m">阳性</span> 辅音结尾、-й、-ь 结尾（如：студент, музей, словарь）<br>
+    <span class="gender-badge gender-f">阴性</span> -а、-я、-ь 结尾（如：книга, неделя, тетрадь）<br>
+    <span class="gender-badge gender-n">中性</span> -о、-е 结尾（如：окно, море）
+  </div>
+
+  <div class="section-title">🔤 阳性名词格变化示例</div>
+  <p>以 <strong>студент</strong>（学生）为例：</p>
+  <table class="case-table">
+    <tr>
+      <th>格</th>
+      <th>单数</th>
+      <th>例句</th>
+    </tr>
+    <tr><td>主格</td><td>студент</td><td>Это студент. （这是学生）<button class="play-btn" onclick="speakRu('Это студент', this)">🔊</button></td></tr>
+    <tr><td>属格</td><td>студент<strong>а</strong></td><td>Книга студент<strong>а</strong>. （学生的书）<button class="play-btn" onclick="speakRu('Книга студента', this)">🔊</button></td></tr>
+    <tr><td>与格</td><td>студент<strong>у</strong></td><td>Я дал книгу студент<strong>у</strong>. （我给了学生书）<button class="play-btn" onclick="speakRu('Я дал книгу студенту', this)">🔊</button></td></tr>
+    <tr><td>宾格</td><td>студент<strong>а</strong></td><td>Я вижу студент<strong>а</strong>. （我看见学生）<button class="play-btn" onclick="speakRu('Я вижу студента', this)">🔊</button></td></tr>
+    <tr><td>工具格</td><td>студент<strong>ом</strong></td><td>Я говорю со студент<strong>ом</strong>. （我和学生说话）<button class="play-btn" onclick="speakRu('Я говорю со студентом', this)">🔊</button></td></tr>
+    <tr><td>前置格</td><td>о студент<strong>е</strong></td><td>Я думаю о студент<strong>е</strong>. （我想着学生）<button class="play-btn" onclick="speakRu('Я думаю о студенте', this)">🔊</button></td></tr>
+  </table>
+
+  <div class="section-title">🌸 阴性名词格变化示例</div>
+  <p>以 <strong>книга</strong>（书）为例：</p>
+  <table class="case-table">
+    <tr>
+      <th>格</th>
+      <th>单数</th>
+      <th>例句</th>
+    </tr>
+    <tr><td>主格</td><td>книг<strong>а</strong></td><td>Это книг<strong>а</strong>. （这是书）<button class="play-btn" onclick="speakRu('Это книга', this)">🔊</button></td></tr>
+    <tr><td>属格</td><td>книг<strong>и</strong></td><td>Нет книг<strong>и</strong>. （没有书）<button class="play-btn" onclick="speakRu('Нет книги', this)">🔊</button></td></tr>
+    <tr><td>与格</td><td>книг<strong>е</strong></td><td>К книг<strong>е</strong>. （朝向书）<button class="play-btn" onclick="speakRu('К книге', this)">🔊</button></td></tr>
+    <tr><td>宾格</td><td>книг<strong>у</strong></td><td>Я читаю книг<strong>у</strong>. （我读书）<button class="play-btn" onclick="speakRu('Я читаю книгу', this)">🔊</button></td></tr>
+    <tr><td>工具格</td><td>книг<strong>ой</strong></td><td>С книг<strong>ой</strong>. （带着书）<button class="play-btn" onclick="speakRu('С книгой', this)">🔊</button></td></tr>
+    <tr><td>前置格</td><td>о книг<strong>е</strong></td><td>О книг<strong>е</strong>. （关于书）<button class="play-btn" onclick="speakRu('О книге', this)">🔊</button></td></tr>
+  </table>
+
+  <div class="section-title">🔷 中性名词格变化示例</div>
+  <p>以 <strong>окно</strong>（窗户）为例：</p>
+  <table class="case-table">
+    <tr>
+      <th>格</th>
+      <th>单数</th>
+      <th>例句</th>
+    </tr>
+    <tr><td>主格</td><td>окн<strong>о</strong></td><td>Это окн<strong>о</strong>. （这是窗户）<button class="play-btn" onclick="speakRu('Это окно', this)">🔊</button></td></tr>
+    <tr><td>属格</td><td>окн<strong>а</strong></td><td>Нет окн<strong>а</strong>. （没有窗户）<button class="play-btn" onclick="speakRu('Нет окна', this)">🔊</button></td></tr>
+    <tr><td>与格</td><td>окн<strong>у</strong></td><td>К окн<strong>у</strong>. （朝向窗户）<button class="play-btn" onclick="speakRu('К окну', this)">🔊</button></td></tr>
+    <tr><td>宾格</td><td>окн<strong>о</strong></td><td>Я вижу окн<strong>о</strong>. （我看见窗户）<button class="play-btn" onclick="speakRu('Я вижу окно', this)">🔊</button></td></tr>
+    <tr><td>工具格</td><td>окн<strong>ом</strong></td><td>Под окн<strong>ом</strong>. （在窗户下）<button class="play-btn" onclick="speakRu('Под окном', this)">🔊</button></td></tr>
+    <tr><td>前置格</td><td>об окн<strong>е</strong></td><td>Об окн<strong>е</strong>. （关于窗户）<button class="play-btn" onclick="speakRu('Об окне', this)">🔊</button></td></tr>
+  </table>
+
+  <div class="section-title">⚡ 常用前置词搭配</div>
+  <div class="example-box">
+    <strong>属格常用前置词：</strong> без（没有）、для（为了）、из（从）、от（从）、у（在...那里）<br>
+    <strong>与格常用前置词：</strong> к（向）、по（沿着）<br>
+    <strong>宾格常用前置词：</strong> в（进入）、на（到...上）、через（通过）<br>
+    <strong>工具格常用前置词：</strong> с（和）、над（在...上方）、под（在...下方）、перед（在...前面）<br>
+    <strong>前置格常用前置词：</strong> в（在...里）、на（在...上）、о（关于）
+  </div>
+
+  <div class="section-title">✅ 学习建议</div>
+  <ol style="line-height: 2;">
+    <li>先记住每个格的基本含义和提问词</li>
+    <li>分性别逐个攻克，先学阳性，再学阴性和中性</li>
+    <li>通过例句理解格的实际用法</li>
+    <li>重点记忆常用前置词的格支配规律</li>
+    <li>多做练习题，在实践中巩固</li>
+  </ol>
+
+  <div class="note-box">
+    <strong>🎯 记忆口诀：</strong><br>
+    主格谁什么，属格谁的啥；<br>
+    与格给谁啥，宾格见谁啥；<br>
+    工具用谁啥，前置在哪说。
+  </div>
+
+  <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #eee;">
+    <a href="../index.html" class="back-btn">← 返回首页</a>
+  </div>
+</div>
+
+<script>
+function speakRu(text, btn) {
+  try {
+    const encoded = encodeURIComponent(text);
+    const url = 'https://translate.google.com/translate_tts?ie=UTF-8&tl=ru&client=tw-ob&q=' + encoded;
+    const audio = new Audio(url);
+    if (btn) {
+      btn.classList.add('playing');
+      audio.onended = () => btn.classList.remove('playing');
+      audio.onerror = () => { btn.classList.remove('playing'); fallbackSpeak(text, btn); };
+    }
+    audio.play().catch(() => fallbackSpeak(text, btn));
+  } catch(e) { fallbackSpeak(text, btn); }
+}
+
+function fallbackSpeak(text, btn) {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'ru-RU'; u.rate = 0.8;
+    const v = window.speechSynthesis.getVoices().find(v => v.lang.startsWith('ru'));
+    if (v) u.voice = v;
+    if (btn) { btn.classList.add('playing'); u.onend = () => btn.classList.remove('playing'); u.onerror = () => btn.classList.remove('playing'); }
+    window.speechSynthesis.speak(u);
+  } else { if (btn) btn.classList.remove('playing'); }
+}
+
+if ('speechSynthesis' in window) {
+  window.speechSynthesis.getVoices();
+  window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+}
+</script>
+</body>
+</html>
